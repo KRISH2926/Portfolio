@@ -133,18 +133,6 @@
 .creative-story>img,.creative-story-photo{display:block;width:100%;height:clamp(190px,25vw,300px);object-fit:cover;object-position:center 40%;overflow:hidden;background:#e8e4d9}
 .creative-story-photo{position:relative;isolation:isolate}
 .creative-story-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0}
-.creative-collage{position:absolute!important;inset:0!important;z-index:2;display:block!important;min-height:0!important;height:100%!important;overflow:hidden}
-.creative-collage>div:first-child{position:absolute;top:9px;right:9px;z-index:5;background:#252720b5;color:#fff;padding:5px 8px;border-radius:2px;font:8px var(--mono);letter-spacing:.05em}
-.creative-collage-items{position:absolute!important;inset:0!important;height:100%!important;display:grid!important;place-items:center!important}
-.creative-collage-item{position:relative!important;width:clamp(75px,12vw,130px)!important;height:clamp(110px,17vw,188px)!important;aspect-ratio:auto!important;border:4px solid #f7f6f0;box-shadow:0 10px 28px #2224}
-.creative-collage-divider{margin:44px 0 34px;padding:20px 24px 12px;border:1px solid #e1d7c6;background:linear-gradient(135deg,rgba(244,239,226,.9),rgba(250,248,241,.76));box-shadow:0 12px 30px #493c2810}
-.creative-collage-divider-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.creative-collage-divider-heading>span{color:#8e765d;font:9px var(--mono);letter-spacing:.14em}
-.creative-collage-divider-heading>p{margin:0;color:#77786e;font-size:10px}
-.creative-collage-spread{position:relative!important;display:flex!important;min-height:250px!important;height:250px!important;gap:0!important;margin:0!important;overflow:hidden}
-.creative-collage-spread>div:first-child{position:absolute;right:10px;bottom:8px;z-index:5;color:#77786e;font:9px var(--mono);letter-spacing:.04em}
-.creative-collage-spread-items{position:absolute!important;inset:0!important;height:100%!important;display:grid!important;place-items:center!important}
-.creative-collage-spread-item{position:relative!important;width:clamp(58px,8vw,100px)!important;height:clamp(88px,12vw,145px)!important;aspect-ratio:auto!important;border:4px solid #fffdf6;box-shadow:0 10px 26px #332d2027}
 .creative-story>div:not(.creative-story-photo){padding-top:13px}
 .creative-story.tunic-story>div:not(.creative-story-photo){padding-top:0}
 .creative-story .project-type{font-size:8px}
@@ -520,10 +508,6 @@ html,body,#root{overflow-x:clip}
 }
 @media (max-width: 680px) {
   .travel-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .creative-collage-divider { margin: 28px 0; padding: 15px 10px 8px; }
-  .creative-collage-divider-heading { align-items: flex-start; flex-direction: column; gap: 5px; }
-  .creative-collage-spread { min-height: 190px !important; height: 190px !important; }
-  .creative-collage-spread-items { transform: scale(.62); }
   .book-modal { justify-content: center; padding: 66px 8px 20px; }
   .book-component-wrap { width: calc(100vw - 16px); }
   .travel-story-book .absolute.inset-0.p-8.flex.flex-col { padding: clamp(10px, 3.5vw, 16px) !important; }

@@ -10,7 +10,6 @@ const LiquidMetalButton = lazy(() => import('./components/ui/liquid-metal.tsx').
 const GlassDock = lazy(() => import('./components/ui/glass-dock.tsx').then((m) => ({ default: m.GlassDock })));
 const ImageTrail = lazy(() => import('./components/ui/image-trail.tsx').then((m) => ({ default: m.ImageTrail })));
 const StaggeredGrid = lazy(() => import('./components/ui/staggered-grid.tsx').then((m) => ({ default: m.StaggeredGrid })));
-const ImageCollage = lazy(() => import('./components/ui/image-collage.tsx').then((m) => ({ default: m.ImageCollage })));
 const WaveGridBackground = lazy(() => import('./components/ui/wave-grid.tsx').then((m) => ({ default: m.WaveGridBackground })));
 const SpotlightNavbar = lazy(() => import('./components/ui/spotlight-navbar.tsx').then((m) => ({ default: m.SpotlightNavbar })));
 
@@ -89,7 +88,7 @@ function Experience() {
   const entries = [
     { name:'OneStop ESG', role:'Business Development & Operations', image:'/images/experience/onestop-logo.webp', alt:'OneStop ESG, World’s Largest ESG Marketplace', description:'Worked across research, company outreach, onboarding, platform management and content operations for a sustainability-focused marketplace. My role involved identifying relevant organisations, maintaining platform information, engaging stakeholders and supporting the growth of the marketplace.', metrics: experiences[0].metrics, note:'Research · Stakeholder outreach · Platform and content operations' },
     { name:'TUNIC Club, JMIT', role:'Convenor', image:10, alt:'TUNIC Club students at an outdoor campus event', description:'Led student teams and coordinated the planning and execution of institutional and inter-school events. Worked across event operations, delegation, promotions, creative execution and on-ground coordination.', metrics: experiences[1].metrics, note:'Zest Day · Syn-e-Quest · Pro-Fashional Fiesta' },
-    { name:'Google Student Ambassador Program', role:'Student Ambassador · 2025', image:'/images/experience/gsa-photo.webp', alt:'A Google Student Ambassador wearing the program cap', description:'Selected among the Top 250 ambassadors in the 2025 program. Contributed to student engagement, awareness initiatives and conversations around technology and AI.', metrics: experiences[2].metrics, note:'Campus engagement · AI awareness · Peer learning' },
+    { name:'Google Student Ambassador Program', role:'Student Ambassador · 2025', image:'/images/experience/gsa-campus-ambassador.webp', alt:'Krish wearing his Google Student Ambassador cap on campus', description:'Selected among the Top 250 ambassadors in the 2025 program. Contributed to student engagement, awareness initiatives and conversations around technology and AI.', metrics: experiences[2].metrics, note:'Campus engagement · AI awareness · Peer learning' },
     { name:'JMIT Chronicles', role:'Scriptwriter · Anchor · Video Editor', image:15, alt:'A student editing a video on a computer', description:'Worked across scriptwriting, anchoring, video editing and content coordination. Mentored students, became part of the team and helped operate JMIT Chronicles across two seasons.', metrics: [], note:'Mentoring · Team operations · Two seasons' },
     { name:'Net Impact Delhi University', role:'Marketing & Communications', image:'/images/experience/netimpact-team.webp', alt:'Net Impact Delhi University marketing and communications team', description:'Contributed to digital communication through posters, videos and content created in collaboration with the marketing and communications team.', metrics: experiences[4].metrics, note:'Posters · Videos · Digital communication' },
   ];
@@ -98,7 +97,7 @@ function Experience() {
     <div className="section-kicker"><span>03</span><span>PROFESSIONAL EXPERIENCE</span><span className="kicker-rule"/></div>
     <div className="section-heading-row"><div><p className="overline">Different teams, shared momentum</p><h2>Work that moves<br/><em>things forward.</em></h2></div></div>
     <div className="experience-content"><div className="experience-list" role="tablist" aria-label="Professional experience">{entries.map((item,index)=><button className={`experience-item ${active===index?'active':''}`} key={item.name} role="tab" aria-selected={active===index} onClick={()=>setActive(index)}><span className="experience-num">0{index+1}</span><span className="experience-main"><strong>{item.name}</strong><small>{item.role}</small></span><ArrowUpRight className="experience-arrow" size={18}/></button>)}</div>
-      <article className="experience-visual" role="tabpanel"><div className={`experience-visual-image experience-image-${active}`}>{entry.image ? <Photo number={entry.image} alt={entry.alt}/> : <div className="experience-visual-type"><span>0{active+1}</span><strong>{entry.name}</strong><small>{entry.role}</small></div>}</div><p className="experience-visual-role">{entry.role}</p><h3>{entry.name}</h3><p className="experience-description">{entry.description}</p><p className="experience-results">{entry.note}</p><div className="experience-metrics">{entry.metrics.map(([value,label])=><div className="metric" key={label}><strong>{value}</strong><span>{label}</span></div>)}</div></article>
+      <article className="experience-visual" role="tabpanel"><div className={`experience-visual-image experience-image-${active}`}>{entry.image ? <Photo number={entry.image} alt={entry.alt} eager={active === 2}/> : <div className="experience-visual-type"><span>0{active+1}</span><strong>{entry.name}</strong><small>{entry.role}</small></div>}</div><p className="experience-visual-role">{entry.role}</p><h3>{entry.name}</h3><p className="experience-description">{entry.description}</p><p className="experience-results">{entry.note}</p><div className="experience-metrics">{entry.metrics.map(([value,label])=><div className="metric" key={label}><strong>{value}</strong><span>{label}</span></div>)}</div></article>
     </div>
   </section>;
 }
@@ -130,10 +129,6 @@ function CreativeWork() {
       <article className="creative-story"><Photo number={9} alt="Student team meeting around a table"/><div><span className="project-type">COORDINATION · EXECUTION</span><h3>Making the plan work</h3><p>Preparation means working through the small details, sharing responsibilities and keeping people aligned as plans move toward event day.</p></div></article>
       <article className="creative-story"><Photo number={15} alt="A student editing a JMIT Chronicles video"/><div><span className="project-type">STORYTELLING · COMMUNICATION</span><h3>JMIT Chronicles</h3><p>Mentored students, became part of the team and helped operate JMIT Chronicles across two seasons.</p></div></article>
       <article className="creative-story gsa-story"><div className="gsa-photo-stack"><img className="gsa-certificate" src="/images/experience/gsa-certificate.webp" alt="Google Student Ambassador Program certificate of completion"/><img className="gsa-kit" src="/images/experience/gsa-kit.webp" alt="Google Student Ambassador welcome kit"/><img className="gsa-spark" src="/images/experience/gemini-spark.webp" alt="Gemini sparkle icon"/></div><div><span className="project-type">STUDENT COMMUNITY · AI</span><h3>Google Student Ambassador</h3><p>Selected among the Top 250 ambassadors for 2025. The program encouraged representing Gemini on campus, leading AI workshops and helping peers explore hands-on initiatives.</p></div></article>
-    </div>
-    <div className="creative-collage-divider">
-      <div className="creative-collage-divider-heading"><span>SCRAPS FROM THE ARCHIVE</span><p>Click the photographs to bring them together</p></div>
-      <Suspense fallback={null}><ImageCollage instruction="Toggle the photo arrangement" className="creative-collage-spread" images={[{src:img(7),x:-210,y:-8,rotate:-9,alt:'TUNIC Club team at a college event'},{src:img(9),x:-140,y:12,rotate:-5,alt:'Student team meeting around a table'},{src:img(10),x:-70,y:-14,rotate:4,alt:'Student community event outdoors'},{src:img(11),x:0,y:9,rotate:8,alt:'Students at a campus event'},{src:img(12),x:70,y:-11,rotate:-5,alt:'Student team at an event'},{src:img(13),x:140,y:13,rotate:6,alt:'TUNIC Club event on stage'},{src:img(14),x:210,y:-7,rotate:-7,alt:'Student recording a campus event'}]} containerClassName="creative-collage-spread-items" imageClassName="creative-collage-spread-item"/></Suspense>
     </div>
     <div className="creative-gallery-heading"><p className="overline">A few moments from the work</p><p>Event and team photographs from the portfolio.</p></div>
     <Suspense fallback={<p className="gallery-loading">Loading the photo gallery…</p>}><StaggeredGrid images={galleryImages} bentoItems={bentoItems} centerText="MADE TOGETHER" imageAlt="Student event and team photograph" showFooter={false} className="portfolio-staggered"/></Suspense>
@@ -241,6 +236,13 @@ function Contact() {
 
 export default function App() {
   const appRef = useRef(null);
+  useEffect(() => {
+    const preventImageContextMenu = (event) => {
+      if (event.target instanceof Element && event.target.closest('img')) event.preventDefault();
+    };
+    document.addEventListener('contextmenu', preventImageContextMenu, true);
+    return () => document.removeEventListener('contextmenu', preventImageContextMenu, true);
+  }, []);
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return undefined;
     const elements = document.querySelectorAll('.hero-copy, .hero-photo-wrap, .about-layout, .bring-card, .experience-item, .experience-visual, .project-card, .creative-story, .journal, .travel-photo-grid, .contact-layout');
