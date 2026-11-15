@@ -115,7 +115,13 @@ function Work() {
 }
 
 function CreativeWork() {
+  const [activeHighlight, setActiveHighlight] = useState(0);
   const galleryImages = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21].map(img);
+  const highlights = [
+    { label:'TEAM LEADERSHIP · TUNIC CLUB, JMIT', title:'Big events come together one detail at a time.', description:'Led planning and delivery across operations, delegation, promotions and on-ground coordination.', metric:'230+', metricLabel:'participants across three Zest Day editions', context:'TUNIC Club · Convenor' },
+    { label:'BUSINESS DEVELOPMENT · ONESTOP ESG', title:'Good operations make room for more to happen.', description:'Worked across research, outreach, onboarding, platform management and content operations.', metric:'400+', metricLabel:'profiles created or updated', context:'OneStop ESG · Operations' },
+    { label:'STUDENT COMMUNITY · GOOGLE', title:'A chance to help students explore new tools.', description:'Selected for the Google Student Ambassador program and contributed to student engagement around technology and AI.', metric:'Top 250', metricLabel:'ambassadors selected in the 2025 program', context:'Google Student Ambassador · 2025' },
+  ];
   const bentoItems = [
     { id:'tunic', title:'TUNIC Club', subtitle:'Events', description:'Institutional and inter-school events', icon:<Users size={16}/>, image:img(8) },
     { id:'chronicles', title:'JMIT Chronicles', subtitle:'Video stories', description:'Script, camera and edit', icon:<Camera size={16}/>, image:img(15) },
@@ -131,6 +137,14 @@ function CreativeWork() {
       <article className="creative-story"><Photo number={15} alt="A student editing a JMIT Chronicles video"/><div><span className="project-type">STORYTELLING · COMMUNICATION</span><h3>JMIT Chronicles</h3><p>Mentored students, became part of the team and helped operate JMIT Chronicles across two seasons.</p></div></article>
       <article className="creative-story gsa-story"><div className="gsa-photo-stack"><img className="gsa-certificate" src="/images/experience/gsa-certificate.webp" alt="Google Student Ambassador Program certificate of completion"/><img className="gsa-kit" src="/images/experience/gsa-kit.webp" alt="Google Student Ambassador welcome kit"/><img className="gsa-spark" src="/images/experience/gemini-spark.webp" alt="Gemini sparkle icon"/></div><div><span className="project-type">STUDENT COMMUNITY · AI</span><h3>Google Student Ambassador</h3><p>Selected among the Top 250 ambassadors for 2025. The program encouraged representing Gemini on campus, leading AI workshops and helping peers explore hands-on initiatives.</p></div></article>
     </div>
+    <div className="work-highlights">
+      <div className="work-highlights-heading"><div><p className="overline">A few notes from the work</p><h3>Small details.<br/><em>Real-world impact.</em></h3></div><p>Selected moments and outcomes from projects, teams and communities I’ve been part of.</p></div>
+      <article className="work-highlight-card" aria-live="polite">
+        <div className="work-highlight-copy"><span className="project-type">{highlights[activeHighlight].label}</span><h4>{highlights[activeHighlight].title}</h4><p>{highlights[activeHighlight].description}</p><strong>{highlights[activeHighlight].context}</strong></div>
+        <div className="work-highlight-result"><span>IN THE NUMBERS</span><strong>{highlights[activeHighlight].metric}</strong><p>{highlights[activeHighlight].metricLabel}</p></div>
+      </article>
+      <div className="work-highlight-controls"><span>{String(activeHighlight + 1).padStart(2, '0')} <i/> {String(highlights.length).padStart(2, '0')}</span><div><button type="button" onClick={() => setActiveHighlight((activeHighlight + highlights.length - 1) % highlights.length)} aria-label="Previous work highlight"><ArrowLeft size={17}/></button><button type="button" onClick={() => setActiveHighlight((activeHighlight + 1) % highlights.length)} aria-label="Next work highlight"><ArrowRight size={17}/></button></div></div>
+    </div>
     <div className="creative-gallery-heading"><p className="overline">A few moments from the work</p><p>Event and team photographs from the portfolio.</p></div>
     <Suspense fallback={<p className="gallery-loading">Loading the photo gallery…</p>}><StaggeredGrid images={galleryImages} bentoItems={bentoItems} centerText="MADE TOGETHER" imageAlt="Student event and team photograph" showFooter={false} className="portfolio-staggered"/></Suspense>
   </section>;
@@ -140,10 +154,10 @@ function Travel() {
   const [active, setActive] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [bookOpen, setBookOpen] = useState(false);
-  const [bookWidth, setBookWidth] = useState(210);
+  const [bookWidth, setBookWidth] = useState(180);
   const savedScrollY = useRef(0);
   useEffect(() => {
-    const updateBookSize = () => setBookWidth(window.innerWidth <= 820 ? Math.max(116, Math.min(150, Math.floor((window.innerWidth - 24) / 2.5))) : 210);
+    const updateBookSize = () => setBookWidth(Math.min(360, Math.floor((window.innerWidth - 36) / 2)));
     updateBookSize();
     window.addEventListener('resize', updateBookSize);
     return () => window.removeEventListener('resize', updateBookSize);
@@ -184,7 +198,7 @@ function Travel() {
       <div className="travel-title-row"><div><p className="overline">A record of places and perspective</p><h2>Somewhere<br/>along the <em>way.</em></h2></div><div className="travel-intro"><p>When I feel stuck or have been working for a long stretch, I like to take a little break and travel. I enjoy meeting people, hearing about their lives and getting to know a place through them.</p><p>One of the most beautiful parts is that nobody knows you yet. It gives me room to be open, vulnerable and fully present. The skies, mountains and trails are a big part of it too, and every trip leaves me with its own memories.</p></div></div>
     </div>
     <div className="journal">
-      <div className="journal-sidebar"><span className="journal-label">PLACES I'VE BEEN</span><div className="destination-list" role="tablist" aria-label="Travel chapters">{['Mountain journeys','Culture & heritage','Mountain escapes'].map((group)=><div className="destination-group" key={group}><span>{group}</span>{destinations.map((d,i)=>d.category===group&&<button className={i===active?'destination-tab active':'destination-tab'} key={d.name} onClick={()=>changePlace(i)} role="tab" aria-selected={i===active}><span>{String(i+1).padStart(2,'0')}</span>{d.name}</button>)}</div>)}</div></div>
+      <div className="journal-sidebar"><span className="journal-label">PLACES I'VE BEEN</span><div className="destination-list" role="tablist" aria-label="Travel chapters">{['Mountain journeys','Culture & heritage','Personal moments','Mountain escapes'].map((group)=><div className="destination-group" key={group}><span>{group}</span>{destinations.map((d,i)=>d.category===group&&<button className={i===active?'destination-tab active':'destination-tab'} key={d.name} onClick={()=>changePlace(i)} role="tab" aria-selected={i===active}><span>{String(i+1).padStart(2,'0')}</span>{d.name}</button>)}</div>)}</div></div>
       <div className="journal-feature">
         <div className="journal-image-wrap"><Photo number={place.images[photoIndex]} alt={`${place.name} travel photograph, frame ${photoIndex + 1}`} key={`${active}-${photoIndex}`} eager={active === 0 && photoIndex === 0}/><div className="journal-image-shade"/>
           <div className="image-location"><MapPin size={13}/>{place.tag}</div><div className="journal-frame-count">{String(photoIndex + 1).padStart(2, '0')} <i/> {String(place.images.length).padStart(2, '0')}</div>
@@ -193,9 +207,9 @@ function Travel() {
         </div>
         <div className="journal-caption"><p>{place.note}</p><button className="open-book-button" onClick={() => setBookOpen(true)}>Open this travel story <ArrowUpRight size={14}/></button></div>
       </div>
-      {bookOpen && <div className="book-modal" role="dialog" aria-modal="true" aria-label={`${place.name} travel story`}><button className="book-modal-close" onClick={() => setBookOpen(false)} aria-label="Close travel story and return to this place"><X/></button><p className="book-modal-label">FIELD NOTES · {place.name.toUpperCase()}</p><div className="book-component-wrap"><Suspense fallback={<span>Opening the journal…</span>}><InteractiveBook className="travel-story-book" coverImage={img(place.cover)} bookTitle={place.name} bookAuthor={place.tag} width={bookWidth} height={Math.round(bookWidth * 1.43)} pages={place.images.map((photo, index) => ({pageNumber:index+1,title:`${place.name} · ${String(index+1).padStart(2,'0')}`,content:<><img className="book-page-image" src={img(photo)} alt={`${place.name} travel photograph ${index+1}`}/><p className="book-page-caption">{place.tag}</p></>,backContent:<img className="book-page-image" src={img(place.images[(index+1)%place.images.length])} alt={`${place.name} travel photograph ${index+2}`}/>}))}/></Suspense></div><span className="book-modal-tip">CLICK THE COVER TO BEGIN · USE LEFT AND RIGHT ARROWS TO TURN PAGES</span></div>}
+      {bookOpen && <div className="book-modal" role="dialog" aria-modal="true" aria-label={`${place.name} travel story`}><button className="book-modal-close" onClick={() => setBookOpen(false)} aria-label="Close travel story and return to this place"><X/></button><p className="book-modal-label">FIELD NOTES · {place.name.toUpperCase()}</p><div className="book-component-wrap"><Suspense fallback={<span>Opening the journal…</span>}><InteractiveBook className="travel-story-book" coverImage={img(place.cover)} bookTitle={place.name} bookAuthor={place.tag} width={bookWidth} height={Math.round(bookWidth * 1.36)} pages={place.images.map((photo, index) => ({pageNumber:index+1,title:`${place.name} · ${String(index+1).padStart(2,'0')}`,content:<><img className="book-page-image" src={img(photo)} alt={`${place.name} travel photograph ${index+1}`}/><p className="book-page-caption">{place.tag}</p></>}))}/></Suspense></div><span className="book-modal-tip">OPEN THE COVER · USE THE ARROWS OR LEFT AND RIGHT KEYS TO TURN PAGES</span></div>}
     </div>
-    <div className="travel-photo-grid">{['Mountain journeys','Culture & heritage','Mountain escapes'].map((label)=><button key={label} onClick={()=>changePlace(destinations.findIndex((d)=>d.category===label))}><span>{label}</span><div>{destinations.filter((destination)=>destination.category===label).slice(0,4).map((destination)=><Photo key={destination.name} number={destination.cover} alt={`${destination.name} personal travel photograph`}/>)}</div></button>)}</div>
+    <div className="travel-photo-grid">{['Mountain journeys','Culture & heritage','Personal moments','Mountain escapes'].map((label)=><button key={label} onClick={()=>changePlace(destinations.findIndex((d)=>d.category===label))}><span>{label}</span><div>{destinations.filter((destination)=>destination.category===label).flatMap((destination)=>destination.images).slice(0,4).map((photo,index)=><Photo key={`${label}-${photo}-${index}`} number={photo} alt={`${label} travel photograph ${index+1}`}/>)}</div></button>)}</div>
   </section>;
 }
 

@@ -69,10 +69,6 @@ export default function InteractiveBook({
         setCurrentPageIndex(-1);
     };
 
-    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentPageIndex(parseInt(e.target.value, 10));
-    };
-
     // Keyboard navigation
     useEffect(() => {
         if (!isOpen) return;
@@ -89,7 +85,7 @@ export default function InteractiveBook({
         <div
             className={cn("relative flex items-center justify-center perspective-[2000px]", className)}
             style={{
-                width: typeof width === 'number' ? width * (width <= 150 ? 2.5 : 3.5) : '100%',
+                width: typeof width === 'number' ? width * 2 : '100%',
                 height: typeof height === 'number' ? height + 100 : 'auto'
             }}
         >
@@ -281,6 +277,15 @@ export default function InteractiveBook({
                         >
                             <X size={24} />
                         </motion.button>
+                        <div className="book-page-controls" aria-label="Travel story page controls">
+                            <button type="button" onClick={prevPage} disabled={currentPageIndex < 0} aria-label="Previous page">
+                                <ChevronLeft size={18} />
+                            </button>
+                            <span>{currentPageIndex < 0 ? 'Cover' : `${currentPageIndex + 1} / ${pages.length}`}</span>
+                            <button type="button" onClick={nextPage} disabled={currentPageIndex >= pages.length - 1} aria-label="Next page">
+                                <ChevronRight size={18} />
+                            </button>
+                        </div>
                     </>
                 )}
             </AnimatePresence>
