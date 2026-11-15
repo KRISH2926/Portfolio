@@ -38,10 +38,20 @@ export const ImageCollage = React.forwardRef<HTMLDivElement, ImageCollageProps>(
           className
         )}
         onClick={toggleLayout}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleLayout();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-pressed={isOrganized}
+        aria-label={instruction}
         {...props}
       >
         <div className="text-zinc-800 dark:text-zinc-200 text-xl font-medium tracking-tight">
-          {instruction}
+          {isOrganized ? "Click to scatter the photographs" : "Click to bring the photographs together"}
         </div>
         
         <motion.div className={cn("h-40 flex items-center justify-center", containerClassName)}>

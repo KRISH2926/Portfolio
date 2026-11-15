@@ -38,7 +38,7 @@ export const destinations = [
   { name: 'Varanasi', category: 'Culture & heritage', tag: 'Along the ghats', note: 'River light, old streets and the steps along the ghats.', cover: 45, images: [43, 44, 45, 46, 47, 48, 49, 50, 51] },
   { name: 'Jaipur', category: 'Culture & heritage', tag: 'Rajasthan', note: 'Historic streets and warm colours across the old city.', cover: 53, images: [52, 53, 54, 55] },
   { name: 'Udaipur', category: 'Culture & heritage', tag: 'Rajasthan', note: 'Water, architecture and a city seen at an easy pace.', cover: 56, images: [56, 57, 58] },
-  { name: 'Random shots', category: 'Personal moments', tag: 'Everyday moments', note: 'A mixed roll of small moments, changing skies and scenes collected along the way.', cover: 74, images: [5, 22, 23, 59, 60, 61, 62, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82] },
+  { name: 'Random shots', category: 'Personal moments', tag: 'Everyday moments', note: 'A mixed roll of small moments, changing skies and scenes collected along the way.', cover: 74, images: [22, 59, 60, 61, 62, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82] },
   { name: 'Mussoorie', category: 'Mountain escapes', tag: 'Uttarakhand', note: 'Mountain views, waterfalls, wildflowers and evening skies.', cover: '/images/travel/mussoorie/09.webp', images: Array.from({ length: 21 }, (_, index) => `/images/travel/mussoorie/${String(index + 1).padStart(2, '0')}.webp`) },
 ];
 
