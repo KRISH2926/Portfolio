@@ -504,8 +504,8 @@ export function WaveGridBackground({
       scene.background = new THREE.Color(p.colorBase).multiplyScalar(0.5);
 
       updateTrail(delta);
-      lerpedMouse.x += (mouse.x - lerpedMouse.x) * 0.04;
-      lerpedMouse.y += (mouse.y - lerpedMouse.y) * 0.04;
+      lerpedMouse.x += (mouse.x - lerpedMouse.x) * 0.08;
+      lerpedMouse.y += (mouse.y - lerpedMouse.y) * 0.08;
       positionCamera(lerpedMouse.x, lerpedMouse.y);
       composer.render();
     });

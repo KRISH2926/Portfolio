@@ -269,5 +269,5 @@ export default function App() {
     }, appRef);
     return () => context.revert();
   }, []);
-  return <><div className="site-wave-background" aria-hidden="true"><Suspense fallback={null}><WaveGridBackground gridSize={26} colorBase="#f7f5ed" colorHigh="#bd806c" waveAmplitude={0.25} waveSpeed={5.5} waveWidth={3.6} waveMaxHeight={0.3}/></Suspense></div><div className="portfolio-content" ref={appRef}><Header/><main><Hero/><About/><WhatIBring/><Experience/><Work/><CreativeWork/><Travel/><Contact/></main></div></>;
+  return <><div className="site-wave-background" aria-hidden="true"><Suspense fallback={null}><WaveGridBackground gridSize={26} colorBase="#f7f5ed" colorHigh="#bd806c" waveAmplitude={0.48} waveSpeed={5.5} waveWidth={3.6} waveMaxHeight={0.55}/></Suspense></div><div className="portfolio-content" ref={appRef}><Header/><main><Hero/><About/><WhatIBring/><Experience/><Work/><CreativeWork/><Travel/><Contact/></main></div></>;
 }
